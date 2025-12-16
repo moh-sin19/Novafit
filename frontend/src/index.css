@@ -1,0 +1,223 @@
+@import "react-day-picker/dist/style.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply font-inter;
+  }
+}
+
+@layer components {
+  /* ====== HEADERS ====== */
+  h1 {
+    /* 52 / 52 / 28 – Bold */
+    @apply font-bold leading-tight tracking-tight text-[28px] md:text-[52px] lg:text-[52px];
+  }
+  h2 {
+    /* 32 / 28 / 24 – Bold */
+    @apply font-bold leading-tight tracking-tight text-[24px] md:text-[28px] lg:text-[32px];
+  }
+  h3 {
+    /* 28 / 28 / 20 – Bold */
+    @apply font-bold leading-tight tracking-tight text-[20px] md:text-[28px] lg:text-[28px];
+  }
+  h4 {
+    /* 24 / 24 / 20 – Bold */
+    @apply font-bold leading-snug text-[20px] md:text-[24px] lg:text-[24px];
+  }
+  h5 {
+    /* 20 / 20 / 18 – Bold */
+    @apply font-bold leading-snug text-[18px] md:text-[20px] lg:text-[20px];
+  }
+  h6 {
+    /* 18 / 18 / 16 – Bold */
+    @apply font-bold leading-snug text-[16px] md:text-[18px] lg:text-[18px];
+  }
+
+  /* ====== SUB-HEADERS ====== */
+  .sh1 {
+    /* 20 / 20 / 18 – Semibold */
+    @apply font-semibold leading-snug text-[18px] md:text-[20px] lg:text-[20px];
+  }
+  .sh2 {
+    /* 18 / 18 / 16 – Semibold */
+    @apply font-semibold leading-snug text-[16px] md:text-[18px] lg:text-[18px];
+  }
+  .sh3 {
+    /* 16 / 16 / 14 – Semibold */
+    @apply font-semibold leading-snug text-[14px] md:text-[16px] lg:text-[16px];
+  }
+
+  /* ====== PARAGRAPHS ====== */
+  .p1 {
+    /* 18 / 18 / 16 – Medium */
+    @apply font-medium leading-relaxed text-[16px] md:text-[18px] lg:text-[18px];
+  }
+  .p2 {
+    /* 16 / 16 / 14 – Medium */
+    @apply font-medium leading-relaxed text-[14px] md:text-[16px] lg:text-[16px];
+  }
+  .p3 {
+    /* 14 / 14 / 13 – Medium */
+    @apply font-medium leading-relaxed text-[13px] md:text-[14px] lg:text-[14px];
+  }
+  .p4 {
+    /* 13 / 13 / 12 – Medium */
+    @apply font-medium leading-relaxed text-[12px] md:text-[13px];
+  }
+
+  /* ====== BUTTONS ====== */
+  .b1 {
+    /* 18 all – ExtraBold */
+    @apply font-extrabold leading-none text-[18px];
+  }
+  .b2 {
+    /* 18 all – Semibold */
+    @apply font-semibold leading-none text-[18px];
+  }
+  .b3 {
+    /* 16 all – Semibold */
+    @apply font-semibold leading-none text-[16px] hover:underline transition-all ease-in duration-300;
+  }
+}
+
+@layer utilities {
+  /* Backgrounds */
+  .bg-base {
+    @apply bg-white dark:bg-gray-950;
+  }
+  .bg-primary {
+    @apply bg-lime-100 dark:bg-lime-900;
+  }
+  .bg-secondary {
+    @apply bg-lavender-100 dark:bg-lavender-700;
+  }
+  .bg-tertiary {
+    @apply bg-aqua-100 dark:bg-aqua-100;
+  }
+  .bg-error {
+    @apply bg-red-100 dark:bg-red-100;
+  }
+  .bg-gray {
+    @apply bg-gray-100 dark:bg-gray-900;
+  }
+
+  /* Text */
+  .text-primary {
+    @apply text-gray-950 dark:text-white;
+  }
+  .text-secondary {
+    @apply text-gray-700 dark:text-gray-400;
+  }
+  .text-subtitle {
+    @apply text-gray-500 dark:text-gray-500;
+  }
+  .text-error {
+    @apply text-red-500 dark:text-red-400;
+  }
+  .text-accent {
+    @apply text-lavender-500 dark:text-lavender-400;
+  }
+
+  /* Borders */
+  .border-subtle {
+    @apply border-gray-200 dark:border-gray-700;
+  }
+  .border-strong {
+    @apply border-gray-400 dark:border-gray-600;
+  }
+  .border-error {
+    @apply border-red-500 dark:border-red-400;
+  }
+
+  /* Actions / Buttons */
+  .btn-primary {
+    @apply bg-lime-400 hover:bg-lime-500 text-gray-950 dark:bg-lime-400 dark:hover:bg-lime-300 dark:text-gray-950;
+  }
+  .btn-secondary {
+    @apply bg-lavender-200 hover:bg-lavender-300 text-gray-950 dark:bg-lavender-400 dark:hover:bg-lavender-200 dark:text-gray-950;
+  }
+  .btn-tertiary {
+    @apply bg-aqua-600 hover:bg-aqua-800 text-white dark:bg-aqua-500 dark:hover:bg-aqua-200 dark:text-gray-950;
+  }
+  .btn-black {
+    @apply bg-gray-950 hover:bg-gray-700 text-white dark:bg-gray-100 dark:hover:bg-gray-200 dark:text-gray-950;
+  }
+  .btn-base {
+    @apply bg-base hover:bg-gray text-primary;
+  }
+
+  /* Cards, chips, etc. */
+  .card {
+    @apply bg-base border border-subtle rounded-xl px-3 py-4 md:px-6 md:py-5;
+  }
+  .no-shadow-card {
+    @apply bg-base border border-subtle rounded-2xl;
+  }
+  .no-shadow-less-round-card {
+    @apply bg-base border border-subtle rounded-l;
+  }
+}
+
+.rdp-root {
+  --rdp-accent-color: rgb(179, 137, 197);
+}
+.rdp-root .rdp-day_selected {
+  background: var(--rdp-accent-color) !important;
+  color: #111827 !important;
+}
+.rdp-root .rdp-caption_dropdowns select {
+  background: transparent;
+}
+
+/* Keep DayPicker caption label small regardless of global h2 styles */
+.rdp-root .rdp-caption_label {
+  font-size: 14px; /* match your p2 */
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 0;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-8%);
+    opacity: 0.98;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+::selection {
+  background: #d5b4e0;
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: #d5b4e0;
+  text-shadow: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Font outline effect for landing page */
+.font-outline {
+  -webkit-text-stroke: 2px currentColor;
+  text-stroke: 2px currentColor;
+  paint-order: stroke fill;
+}
+
+/* Scroll margin for fixed navbar */
+section[id] {
+  scroll-margin-top: 80px;
+}

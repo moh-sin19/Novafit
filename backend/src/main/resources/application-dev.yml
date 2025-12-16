@@ -1,0 +1,17 @@
+spring:
+  datasource:
+    url: jdbc:sqlite:./data/novafit-dev.db
+  jpa:
+    hibernate:
+      ddl-auto: update   # allow Hibernate to evolve schema in dev
+    show-sql: true
+  flyway:
+    locations: classpath:db/migration/common,classpath:db/migration/dev
+    clean-disabled: false
+
+fatsecret:
+  base-url: https://platform.fatsecret.com/rest/server.api
+  token-url: https://oauth.fatsecret.com/connect/token
+  client-id: 32fe6c72d3c549c7ab5d18f77158103c
+  client-secret: 47ec97b2829647eb8c8d34a44ac560b3
+

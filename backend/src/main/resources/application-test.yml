@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    url: "jdbc:sqlite::memory:"
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: validate      # validate schema, don’t generate
+  flyway:
+    locations: classpath:db/migration/common   # only schema migrations
+    clean-disabled: false
+    clean-on-validation-error: true

@@ -1,0 +1,122 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.3.3'
+    id 'io.spring.dependency-management' version '1.1.6'
+    id 'jacoco'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17) // match your Java version
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Spring Boot
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+    // Database
+    implementation 'org.xerial:sqlite-jdbc:3.45.3.0'
+    implementation 'org.hibernate.orm:hibernate-community-dialects:6.4.4.Final'
+    implementation 'org.flywaydb:flyway-core'
+
+    // Testing
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.2'
+
+    //Encryption
+    implementation 'org.springframework.security:spring-security-crypto'
+
+    // JJWT (Java JWT) for token generation/validation
+    implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.11.5'
+    runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.11.5' // for JSON serialization/deserialization
+
+    // Spring Security (core + web)
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport // Generate coverage report after tests run
+}
+
+// JaCoCo Configuration
+jacoco {
+    toolVersion = "0.8.11"
+}
+
+// Generate JaCoCo test coverage report
+jacocoTestReport {
+    dependsOn test // Tests must run before generating the report
+    
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+        
+        // Custom report locations (optional)
+        html.outputLocation = file("${buildDir}/reports/jacoco/html")
+        xml.outputLocation = file("${buildDir}/reports/jacoco/xml/jacoco.xml")
+    }
+    
+    // Configure which classes to include/exclude in coverage
+    afterEvaluate {
+        classDirectories.setFrom(files(classDirectories.files.collect {
+            fileTree(dir: it, exclude: [
+                '**/config/**',
+                '**/dto/**',
+                '**/model/**',
+                '**/DemoApplication.class',
+                '**/security/JwtUtils.class',
+                '**/security/JwtAuthFilter.class'
+            ])
+        }))
+    }
+}
+
+// Optional: Coverage verification task (fails build if coverage is below threshold)
+jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
+    
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.60 // 60% minimum coverage
+            }
+        }
+        
+        // You can add more specific rules per package
+        rule {
+            element = 'PACKAGE'
+            includes = ['com.example.demo.service']
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.70 // 70% for services
+            }
+        }
+        
+        rule {
+            element = 'PACKAGE'
+            includes = ['com.example.demo.controller']
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.70 // 70% for controllers
+            }
+        }
+    }
+}
+
+

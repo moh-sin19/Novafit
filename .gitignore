@@ -1,0 +1,43 @@
+# ---------------------
+# Environment files
+# ---------------------
+.env
+backend/.env
+frontend/.env.local
+
+# ---------------------
+# Node / Frontend
+# ---------------------
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/.next/     # (if you ever use Next.js with React)
+*.log
+
+# ---------------------
+# Gradle / Backend
+# ---------------------
+.gradle/
+build/
+out/
+backend/build/
+backend/out/
+backend/bin
+
+# IDE / Editor junk
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# ---------------------
+# OS files
+# ---------------------
+Thumbs.db
+
+# ---------------------
+# SQLite / Database files
+# ---------------------
+*.db
+*.sqlite
+*.sqlite3

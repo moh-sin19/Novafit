@@ -1,0 +1,29 @@
+server:
+  port: ${SERVER_PORT:8080}
+
+spring:
+  datasource:
+    url: jdbc:sqlite:./data/novafit-dev.db
+    driver-class-name: org.sqlite.JDBC
+  jpa:
+    hibernate:
+      ddl-auto: validate   # don't auto-create, just validate schema
+    properties:
+      hibernate.dialect: org.hibernate.community.dialect.SQLiteDialect
+      hibernate.physical_naming_strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy
+      hibernate.implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+    show-sql: false
+  flyway:
+    locations: classpath:db/migration/common
+
+logging:
+  level:
+    root: INFO
+    com.example.demo.service.MailService: DEBUG
+
+
+
+app:
+  jwt:
+    secret: ${JWT_SECRET:MySuperSecretKeyMySuperSecretKey}
+    expiration-ms: ${JWT_EXPIRATION_MS:3600000}
